@@ -1,0 +1,57 @@
+222. Count Complete Tree Nodes
+Medium
+
+5023
+
+315
+
+Add to List
+
+Share
+Given the root of a complete binary tree, return the number of the nodes in the tree.
+//ccording to Wikipedia, every level, except possibly the last, is completely filled in a complete binary tree, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.
+
+Design an algorithm that runs in less than O(n) time complexity.
+
+
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int countNodes(TreeNode root) {
+        
+        if(root==null){
+            return 0;
+        }
+       return 1+countNodes(root.left)+countNodes(root.right);
+        // Queue<TreeNode>q=new LinkedList<>();
+        // q.add(root);
+        // int c=0;
+        // while(!q.isEmpty()){
+        //     c++;
+        //     TreeNode t=q.poll();
+        //     if(t.left!=null){
+        //         q.add(t.left);
+        //     }
+        //       if(t.right!=null){
+        //         q.add(t.right);
+        //     }
+        // }
+        // return c;
+        
+    }
+}
