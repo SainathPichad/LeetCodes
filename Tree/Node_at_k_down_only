@@ -1,0 +1,32 @@
+ */
+class Solution {
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+        Queue<TreeNode>q=new LinkedList<>();
+        q.add(root);
+        List<Integer>al=new ArrayList<Integer>();
+        while(!q.isEmpty()){
+            TreeNode t=q.poll();
+            if(t==target){
+                atk(al,t,k);
+            }
+            if(t.left!=null){
+                q.add(t.left);
+            }
+              if(t.right!=null){
+                q.add(t.right);
+            }
+        }
+        return al;
+    }
+    static void atk(List<Integer>al,TreeNode root,int k){
+        if(root==null)return;
+        if(k==0){
+            al.add(root.val);
+        }
+        else{
+            atk(al,root.left,k-1);
+             atk(al,root.right,k-1);
+            
+        }
+    }
+}
