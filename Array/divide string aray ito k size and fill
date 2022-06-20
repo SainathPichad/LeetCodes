@@ -1,0 +1,113 @@
+8. Divide a String Into Groups of Size k
+Easy
+
+259
+
+12
+
+Add to List
+
+Share
+A string s can be partitioned into groups of size k using the following procedure:
+
+The first group consists of the first k characters of the string, the second group consists of the next k characters of the string, and so on. Each character can be a part of exactly one group.
+For the last group, if the string does not have k characters remaining, a character fill is used to complete the group.
+Note that the partition is done so that after removing the fill character from the last group (if it exists) and concatenating all the groups in order, the resultant string should be s.
+
+Given the string s, the size of each group k and the character fill, return a string array denoting the composition of every group s has been divided into, using the above procedure.
+
+ 
+
+Example 1:
+
+Input: s = "abcdefghi", k = 3, fill = "x"
+Output: ["abc","def","ghi"]
+Explanation:
+The first 3 characters "abc" form the first group.
+The next 3 characters "def" form the second group.
+The last 3 characters "ghi" form the third group.
+Since all groups can be completely filled by characters from the string, we do not need to use fill.
+Thus, the groups formed are "abc", "def", and "ghi".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.company;
+
+import java.util.ArrayList;
+import java.util.List;
+
+class S {
+    public static void main(String[] args) {
+        String a[]=divideString("abcdefghij",3,"x");
+        for (String i:a){
+            System.out.println(i+"_");
+        }
+
+    }
+    public  static  String[] divideString(String s, int k, String fill) {
+        int rem = 0;
+        if( s.length() % k != 0){
+            rem = k - s.length() % k; //counting the total positions where we have to fill the char "fill".
+        }
+        for(int i = 0; i < rem; i++){
+            s = s+fill; //appending the char to the String
+        }
+               List<String>ls=new ArrayList<>();
+        int count=0;
+
+        String o="";
+        for(int i=0;i<s.length();i++){
+
+            if(count<k){
+                o+=s.charAt(i);
+                count++;
+            }
+            // System.out.print(s.charAt(i)+"-");
+
+            if(count==k) {
+                count = 0;
+                int dif = o.length() - k;
+
+
+                ls.add(o);
+                o = o.replace(o, "");
+                //   System.out.println(o + "now");
+
+
+            }
+
+//                    else{
+//                        for(int j=0;j<dif;j++){
+//                            o+=fill;
+//                        }
+//                        ls.add(o);
+//                    }
+
+
+
+        }
+
+        String[]ans=new String[ls.size()];
+        for (int i=0;i<ls.size();i++){
+            ans[i]=ls.get(i);
+        }
+        return ans;
+    }
+}
